@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestHarness", "TestHarness\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoyalDomain", "RoyalDomain\RoyalDomain.csproj", "{0F941A16-A528-4945-9BCF-E6BE7743744A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleTesting", "ModuleTesting\ModuleTesting.csproj", "{FFDFA233-CA5C-4317-97B5-EA01D3E09E28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0F941A16-A528-4945-9BCF-E6BE7743744A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F941A16-A528-4945-9BCF-E6BE7743744A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F941A16-A528-4945-9BCF-E6BE7743744A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFDFA233-CA5C-4317-97B5-EA01D3E09E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFDFA233-CA5C-4317-97B5-EA01D3E09E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFDFA233-CA5C-4317-97B5-EA01D3E09E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFDFA233-CA5C-4317-97B5-EA01D3E09E28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
