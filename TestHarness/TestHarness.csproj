@@ -7,10 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BehaviorDomain\BehaviorDomain.csproj" />
-    <ProjectReference Include="..\CharacterDomain\CharacterDomain.csproj" />
-    <ProjectReference Include="..\DialogueDomain\DialogueDomain.csproj" />
-  </ItemGroup>
-
 </Project>

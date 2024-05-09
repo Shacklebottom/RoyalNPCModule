@@ -1,5 +1,5 @@
 ﻿
-namespace CharacterDomain
+namespace RoyalDomain
 {
     public enum DelayTendency
     {
