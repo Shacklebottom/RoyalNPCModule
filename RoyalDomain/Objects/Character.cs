@@ -4,15 +4,13 @@ namespace RoyalDomain.Objects
 {
     public class Character
     {
-        public IProfile Profile { get; set; }
-
         public IBehavior Behavior { get; set; }
 
-        public Character(IProfile profile, IBehavior behavior)
+        public Character(IBehavior behavior)
         {
-            Profile = profile;
-
             Behavior = behavior;
         }
+
+        //something something random.NextDouble()
     }
 }
