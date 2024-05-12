@@ -9,12 +9,12 @@ namespace ModuleTesting
     public class ProfileTests
     {
         [TestMethod]
-        public void Constructor_ShouldAssignSociability()
+        public void Constructor_ShouldSetSociability()
         {
             //Arrange
             var social = Sociability.Stoic;
 
-            var delay = DelayTendency.Distracted;
+            var delay = DelayTendency.Focused;
 
             //Act
             var profile = new Profile(social, delay);
@@ -24,19 +24,18 @@ namespace ModuleTesting
         }
 
         [TestMethod]
-        public void Constructor_ShouldAssignDelayTendency()
+        public void Constructor_ShouldSetDelayTendency()
         {
             //Arrange
             var social = Sociability.Stoic;
 
-            var delay = DelayTendency.Distracted;
+            var delay = DelayTendency.Focused;
 
             //Act
             var profile = new Profile(social, delay);
 
             //Assert
             Assert.AreEqual(delay, profile.DelayTendency);
-
         }
     }
 }

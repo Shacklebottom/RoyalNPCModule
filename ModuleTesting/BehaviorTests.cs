@@ -9,14 +9,22 @@ namespace ModuleTesting
     {
         private Mock<IProfile> _mockProfile; 
 
+        private readonly DelayTendency _delayLowEnd = DelayTendency.Focused;
+
+        private readonly DelayTendency _delayHighEnd = DelayTendency.Distracted;
+
+        private readonly Sociability _socialLowEnd = Sociability.Stoic;
+
+        private readonly Sociability _socialHighEnd = Sociability.Chatty;
+
         [TestInitialize]
         public void Initialize_BehaviorTest()
         {
             _mockProfile = new Mock<IProfile>();
 
-            _mockProfile.Setup(p => p.Sociability).Returns(Sociability.Stoic);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            _mockProfile.Setup(p => p.DelayTendency).Returns(DelayTendency.Distracted);
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
         }
 
         [TestMethod]
@@ -74,10 +82,16 @@ namespace ModuleTesting
         }
 
         [TestMethod]
-        public void Property_ShouldReturnAValue()
+        public void ChanceToSpeak_ShouldNotReturn_LessThanZero()
         {
             //Arrange
-            var behavior = new Behavior(_mockProfile.Object);
+            Mock<IProfile> mockProfile = new Mock<IProfile>();
+
+            mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
+
+            mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
+
+            var behavior = new Behavior(mockProfile.Object);
 
             //Act
             var result = behavior.ChanceToSpeak;
@@ -86,19 +100,137 @@ namespace ModuleTesting
             Assert.IsTrue(result > 0);
         }
 
+        [TestMethod]
+        public void ChanceToSpeak_ShouldNotReturn_ExactlyZero()
+        {
+            //Arrange
+            Mock<IProfile> mockProfile = new Mock<IProfile>();
 
+            mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
 
-        //[TestMethod]
-        //public void GetDelay_ShouldDoThings()
-        //{
-        //    //Arrange
-        //    var behavior = new Behavior(_mockProfile.Object);
+            mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-        //    //Act
-        //    var result = behavior.GetDelay();
+            var behavior = new Behavior(mockProfile.Object);
 
-        //    //Assert
-            
-        //}
+            //Act
+            var result = behavior.ChanceToSpeak;
+
+            //Assert
+            Assert.IsTrue(result != 0);
+        }
+
+        [TestMethod]
+        public void ChanceToSpeak_ShouldNotReturn_GreaterThanOne()
+        {
+            //Arrange
+            Mock<IProfile> mockProfile = new Mock<IProfile>();
+
+            mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
+
+            mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
+
+            var behavior = new Behavior(mockProfile.Object);
+
+            //Act
+            var result = behavior.ChanceToSpeak;
+
+            //Assert
+            Assert.IsTrue(result < 1);
+        }
+
+        [TestMethod]
+        public void ChanceToSpeak_ShouldNotReturn_ExactlyOne()
+        {
+            //Arrange
+            Mock<IProfile> mockProfile = new Mock<IProfile>();
+
+            mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
+
+            mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
+
+            var behavior = new Behavior(mockProfile.Object);
+
+            //Act
+            var result = behavior.ChanceToSpeak;
+
+            //Assert
+            Assert.IsTrue(result != 1);
+        }
+
+        [TestMethod]
+        public void WaitLenience_ShouldNotReturn_LessThanZero()
+        {
+            //Arrange
+            Mock<IProfile> mockProfile = new Mock<IProfile>();
+
+            mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
+
+            mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
+
+            var behavior = new Behavior(mockProfile.Object);
+
+            //Act
+            var result = behavior.WaitLenience;
+
+            //Assert
+            Assert.IsTrue(result > 0);
+        }
+
+        [TestMethod]
+        public void WaitLenience_ShouldNotReturn_ExactlyZero()
+        {
+            //Arrange
+            Mock<IProfile> mockProfile = new Mock<IProfile>();
+
+            mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
+
+            mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
+
+            var behavior = new Behavior(mockProfile.Object);
+
+            //Act
+            var result = behavior.WaitLenience;
+
+            //Assert
+            Assert.IsTrue(result != 0);
+        }
+
+        [TestMethod]
+        public void WaitLenience_ShouldNotReturn_GreaterThanOne()
+        {
+            //Arrange
+            Mock<IProfile> mockProfile = new Mock<IProfile>();
+
+            mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
+
+            mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
+
+            var behavior = new Behavior(mockProfile.Object);
+
+            //Act
+            var result = behavior.WaitLenience;
+
+            //Assert
+            Assert.IsTrue(result < 1);
+        }
+
+        [TestMethod]
+        public void WaitLenience_ShouldNotReturn_ExactlyOne()
+        {
+            //Arrange
+            Mock<IProfile> mockProfile = new Mock<IProfile>();
+
+            mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
+
+            mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
+
+            var behavior = new Behavior(mockProfile.Object);
+
+            //Act
+            var result = behavior.WaitLenience;
+
+            //Assert
+            Assert.IsTrue(result != 1);
+        }
     }
 }
