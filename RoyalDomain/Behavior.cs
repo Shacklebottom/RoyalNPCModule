@@ -3,19 +3,33 @@ namespace RoyalDomain
 {
     public class Behavior
     {
-        public Dictionary<Sociability, double> sociabilityWeights { get; set; }
+        public double ChanceToSpeak 
+        { get 
+            {
+                var baseChance =
+                    (SociabilityWeights[Profile.Sociability] * 0.7) +
+                    (DelayTendencyWeights[Profile.DelayTendency] * 0.9);
+                return baseChance;
+            }
+        }
 
-        public Dictionary<DelayTendency, double> delaytendencyWeights { get; set; }
+        public Dictionary<Sociability, double> SociabilityWeights { get; set; }
 
-        public Behavior()
+        public Dictionary<DelayTendency, double> DelayTendencyWeights { get; set; }
+
+        public IProfile Profile { get; set; }
+
+        public Behavior(IProfile profile)
         {
-            sociabilityWeights = new Dictionary<Sociability, double> 
+            Profile = profile;
+
+            SociabilityWeights = new Dictionary<Sociability, double> 
             {
                 { Sociability.Chatty, 0.9 },
                 { Sociability.Stoic, 0.1 },
             };
 
-            delaytendencyWeights = new Dictionary<DelayTendency, double>
+            DelayTendencyWeights = new Dictionary<DelayTendency, double>
             {
                 { DelayTendency.Focused, 0.9 },
                 { DelayTendency.Distracted, 0.1 },
