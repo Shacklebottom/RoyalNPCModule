@@ -1,7 +1,7 @@
 ﻿
 namespace RoyalDomain
 {
-    public class Behavior
+    public class Behavior : IBehavior
     {
         public double ChanceToSpeak
         {
