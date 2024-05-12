@@ -1,5 +1,6 @@
-﻿
-namespace RoyalDomain
+﻿using RoyalDomain.Enums;
+
+namespace RoyalDomain.Interfaces
 {
     public interface IBehavior
     {

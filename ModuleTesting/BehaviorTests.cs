@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoyalDomain;
 using Moq;
+using RoyalDomain.Interfaces;
+using RoyalDomain.Enums;
 
 namespace ModuleTesting
 {

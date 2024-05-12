@@ -1,5 +1,7 @@
-﻿
-namespace RoyalDomain
+﻿using RoyalDomain.Enums;
+using RoyalDomain.Interfaces;
+
+namespace RoyalDomain.Objects
 {
     public class Behavior : IBehavior
     {
@@ -8,8 +10,8 @@ namespace RoyalDomain
             get
             {
                 var baseChance =
-                    (SociabilityWeights[Profile.Sociability] * 0.7) +
-                    (DelayTendencyWeights[Profile.DelayTendency] * 0.3);
+                    SociabilityWeights[Profile.Sociability] * 0.7 +
+                    DelayTendencyWeights[Profile.DelayTendency] * 0.3;
                 return baseChance;
             }
         }
@@ -18,9 +20,9 @@ namespace RoyalDomain
         {
             get
             {
-                var baseLenience = 
-                    (DelayTendencyWeights[Profile.DelayTendency] * 0.6) +
-                    (SociabilityWeights[Profile.Sociability] * 0.4);
+                var baseLenience =
+                    DelayTendencyWeights[Profile.DelayTendency] * 0.6 +
+                    SociabilityWeights[Profile.Sociability] * 0.4;
                 return baseLenience;
             }
         }

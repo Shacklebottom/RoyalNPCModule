@@ -1,6 +1,7 @@
-﻿
+﻿using RoyalDomain.Enums;
+using RoyalDomain.Interfaces;
 
-namespace RoyalDomain
+namespace RoyalDomain.Objects
 {
     public class Profile : IProfile
     {

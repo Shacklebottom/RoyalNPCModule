@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using RoyalDomain;
+using RoyalDomain.Enums;
 
 
 namespace ModuleTesting

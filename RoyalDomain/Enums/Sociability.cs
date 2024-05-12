@@ -1,5 +1,4 @@
-﻿
-namespace RoyalDomain
+﻿namespace RoyalDomain.Enums
 {
     public enum Sociability
     {
