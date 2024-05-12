@@ -1,4 +1,4 @@
-﻿using RoyalDomain;
+﻿using RoyalDomain.Objects;
 using RoyalDomain.Enums;
 using TestHarness;
 

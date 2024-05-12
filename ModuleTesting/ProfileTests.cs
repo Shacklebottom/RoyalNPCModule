@@ -1,6 +1,5 @@
-﻿
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RoyalDomain;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using RoyalDomain.Objects;
 using RoyalDomain.Enums;
 
 
