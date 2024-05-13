@@ -8,6 +8,7 @@ namespace RoyalDomain.Objects
 
         public IRandomGenerator Random { get; set; }
 
+        //Constructor
         public Character(IBehavior behavior, IRandomGenerator random)
         {
             Behavior = behavior;

@@ -5,6 +5,12 @@ namespace RoyalDomain.Objects
 {
     public class Behavior : IBehavior
     {
+        public IProfile Profile { get; set; }
+
+        public Dictionary<Sociability, double> SociabilityWeights { get; set; }
+
+        public Dictionary<DelayTendency, double> DelayTendencyWeights { get; set; }
+
         public double ChanceToSpeak
         {
             get
@@ -27,12 +33,7 @@ namespace RoyalDomain.Objects
             }
         }
 
-        public Dictionary<Sociability, double> SociabilityWeights { get; set; }
-
-        public Dictionary<DelayTendency, double> DelayTendencyWeights { get; set; }
-
-        public IProfile Profile { get; set; }
-
+        //Constructor
         public Behavior(IProfile profile)
         {
             Profile = profile;

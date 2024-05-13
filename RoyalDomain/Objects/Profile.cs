@@ -9,6 +9,7 @@ namespace RoyalDomain.Objects
 
         public DelayTendency DelayTendency { get; set; }
 
+        //Constructor
         public Profile(Sociability sociability, DelayTendency delayTendency)
         {
             Sociability = sociability;
