@@ -84,6 +84,19 @@ namespace ModuleTesting
         }
 
         [TestMethod]
+        public void ChanceToSpeak_ReturnsADouble()
+        {
+            //Arrange
+            var behavior = new Behavior(_mockProfile.Object);
+
+            //Act
+            var result = behavior.ChanceToSpeak;
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(double));
+        }
+
+        [TestMethod]
         public void ChanceToSpeak_ShouldNotReturn_LessThanZero()
         {
             //Arrange
@@ -157,6 +170,19 @@ namespace ModuleTesting
 
             //Assert
             Assert.IsTrue(result != 1);
+        }
+
+        [TestMethod]
+        public void WaitLenience_ReturnsADouble()
+        {
+            //Arrange
+            var behavior = new Behavior(_mockProfile.Object);
+
+            //Act
+            var result = behavior.WaitLenience;
+
+            //Assert
+            Assert.IsInstanceOfType(result, typeof(double));
         }
 
         [TestMethod]
