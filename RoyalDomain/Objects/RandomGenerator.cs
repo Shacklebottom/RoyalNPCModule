@@ -1,5 +1,4 @@
-﻿
-using RoyalDomain.Interfaces;
+﻿using RoyalDomain.Interfaces;
 
 namespace RoyalDomain.Objects
 {

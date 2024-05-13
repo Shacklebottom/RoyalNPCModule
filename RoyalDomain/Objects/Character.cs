@@ -12,7 +12,7 @@ namespace RoyalDomain.Objects
         public Character(IBehavior behavior, IRandomGenerator random)
         {
             Behavior = behavior;
-
+            
             Random = random;
         }
 
