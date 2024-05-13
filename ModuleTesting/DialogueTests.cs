@@ -4,7 +4,7 @@ using RoyalDomain.Objects;
 namespace ModuleTesting
 {
     [TestClass]
-    public class DialogTests
+    public class DialogueTests
     {
         //Notice! What we're doin' is tightly coupling GetLines() with the Lines property through the Dialogue obj's Constructor.
         public class TestDialogue : Dialogue
