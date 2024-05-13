@@ -5,10 +5,13 @@ namespace RoyalDomain.Objects
 {
     public abstract class Dialogue : IDialogue
     {
+        public IProfile Profile { get; set; }
         public List<string> Lines { get; set; }
 
-        public Dialogue()
+        public Dialogue(IProfile profile)
         {
+            Profile = profile;
+
             Lines = GetLines();
         }
 
