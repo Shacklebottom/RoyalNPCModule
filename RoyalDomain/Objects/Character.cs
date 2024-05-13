@@ -6,11 +6,22 @@ namespace RoyalDomain.Objects
     {
         public IBehavior Behavior { get; set; }
 
-        public Character(IBehavior behavior)
+        public IRandomGenerator Random { get; set; }
+
+        public Character(IBehavior behavior, IRandomGenerator random)
         {
             Behavior = behavior;
+
+            Random = random;
         }
 
-        //something something random.NextDouble()
+        public bool ShallCharacterSpeak()
+        {
+            if (Random.NextDouble() <= Behavior.ChanceToSpeak)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
