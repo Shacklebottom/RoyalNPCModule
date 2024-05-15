@@ -41,19 +41,58 @@ namespace ModuleTesting
             //Assert
             Assert.AreEqual(_delay, _profile.DelayTendency);
         }
+
         [TestMethod]
-        public void Property_ShouldSetSociabilityWeights()
+        public void SociabilityWeights_ShouldImplement_EachEnumElementAsKey()
         {
             //Arrange
+
             //Act
             
             //Assert
-            //1. that each item in Sociability is in the dictionary, and
+            //1. that each item in Sociability is in the dictionary
             foreach (Sociability item in Enum.GetValues(typeof(Sociability)))
             {
                 Assert.IsTrue(_profile.SociabilityWeights.ContainsKey(item));
             }
-            //2. that each item has a value associated with it.
+        }
+
+        [TestMethod]
+        public void SociabilityWeights_ShouldImplement_DoubleAsValue()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            foreach (var item in _profile.SociabilityWeights)
+            {
+                Assert.AreEqual(typeof(double), item.Value.GetType());
+            }
+        }
+
+        [TestMethod]
+        public void SociabilityWeights_ValueShouldBe_LessThanOne()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            foreach (var item in _profile.SociabilityWeights)
+            {
+                Assert.IsTrue(item.Value < 1);
+            }
+        }
+
+        [TestMethod]
+        public void SociabilityWeights_ValueShouldBe_GreaterThanZero()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
             foreach (var item in _profile.SociabilityWeights)
             {
                 Assert.IsTrue(item.Value > 0);
@@ -61,22 +100,59 @@ namespace ModuleTesting
         }
 
         [TestMethod]
-        public void Property_ShouldSetDelayTendencyWeights()
+        public void DelayTendencyWeights_ShouldImplement_EachEnumElementAsKey()
         {
             //Arrange
 
             //Act
 
             //Assert
-            //1. that each item in DelayTendency is in the dictionary, and
+            //1. that each item in DelayTendency is in the dictionary
             foreach (DelayTendency item in Enum.GetValues(typeof(DelayTendency)))
             {
                 Assert.IsTrue(_profile.DelayTendencyWeights.ContainsKey(item));
             }
-            //2. that each item has a value associated with it.
+        }
+
+        [TestMethod]
+        public void DelayTendencyWeights_ShouldImplement_DoubleAsValue()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
             foreach (var item in _profile.DelayTendencyWeights)
             {
-                Assert.IsTrue(item.Value > 0);
+                Assert.AreEqual(typeof(double), item.Value.GetType());
+            }
+        }
+
+        [TestMethod]
+        public void DelayTendencyWeights_ValueShouldBe_LessThanOne()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            foreach (var item in _profile.DelayTendencyWeights)
+            {
+                Assert.IsTrue(item.Value < 1.0);
+            }
+        }
+
+        [TestMethod]
+        public void DelayTendencyWeights_ValueShouldBe_GreaterThanZero()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            foreach (var item in _profile.DelayTendencyWeights)
+            {
+                Assert.IsTrue(item.Value > 0.0);
             }
         }
     }

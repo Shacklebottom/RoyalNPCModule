@@ -2,19 +2,11 @@
 
 namespace RoyalDomain.Objects
 {
-    public class Character
+    public class Character(IBehavior behavior, IRandomGenerator random)
     {
-        public IBehavior Behavior { get; set; }
+        public IBehavior Behavior { get; set; } = behavior;
 
-        public IRandomGenerator Random { get; set; }
-
-        //Constructor
-        public Character(IBehavior behavior, IRandomGenerator random)
-        {
-            Behavior = behavior;
-            
-            Random = random;
-        }
+        public IRandomGenerator Random { get; set; } = random;
 
         public bool ShallCharacterSpeak()
         {

@@ -20,10 +20,6 @@ namespace ModuleTesting
         {
             _mockBehavior = new Mock<IBehavior>();
 
-            _mockBehavior.Setup(b => b.ChanceToSpeak).Returns(0.9);
-
-            _mockBehavior.Setup(b => b.WaitLenience).Returns(0.6);
-
             _mockRandom = new Mock<IRandomGenerator>();
 
             _mockRandom.Setup(r => r.NextDouble()).Returns(0.5);
@@ -81,12 +77,28 @@ namespace ModuleTesting
         }
 
         [TestMethod]
-        public void ShallCharacterSpeak_IfValueLessOrEqualToChanceToSpeak_ReturnTrue()
+        public void ShallCharacterSpeak_IfValueLessThanChanceToSpeak_ReturnTrue()
         {
             //Arrange
             _mockRandom.Setup(r => r.NextDouble()).Returns(0.2);
 
             _mockBehavior.Setup(b => b.ChanceToSpeak).Returns(0.3);
+
+            //Act
+            var result = _character.ShallCharacterSpeak();
+
+            //Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void ShallCharacterSpeak_IfValueEqualsChanceToSpeak_ReturnTrue()
+        {
+            //Arrange
+            _mockRandom.Setup(r => r.NextDouble()).Returns(0.2);
+
+            _mockBehavior.Setup(b => b.ChanceToSpeak).Returns(0.2);
+
 
             //Act
             var result = _character.ShallCharacterSpeak();
