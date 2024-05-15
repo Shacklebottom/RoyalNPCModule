@@ -8,55 +8,53 @@ namespace ModuleTesting
     [TestClass]
     public class ProfileTests
     {
+        private readonly Sociability _social = Sociability.Stoic;
+
+        private readonly DelayTendency _delay = DelayTendency.Focused;
+
+        private Profile _profile;
+
+        [TestInitialize]
+        public void Initialize_ProfileTest()
+        {
+            _profile = new Profile(_social, _delay);
+        }
+
         [TestMethod]
         public void Constructor_ShouldSetSociability()
         {
             //Arrange
-            var social = Sociability.Stoic;
-
-            var delay = DelayTendency.Focused;
 
             //Act
-            var profile = new Profile(social, delay);
 
             //Assert
-            Assert.AreEqual(social, profile.Sociability);
+            Assert.AreEqual(_social, _profile.Sociability);
         }
 
         [TestMethod]
         public void Constructor_ShouldSetDelayTendency()
         {
             //Arrange
-            var social = Sociability.Stoic;
-
-            var delay = DelayTendency.Focused;
 
             //Act
-            var profile = new Profile(social, delay);
 
             //Assert
-            Assert.AreEqual(delay, profile.DelayTendency);
+            Assert.AreEqual(_delay, _profile.DelayTendency);
         }
         [TestMethod]
         public void Constructor_ShouldSetSociabilityWeights()
         {
             //Arrange
-            var social = Sociability.Stoic;
-
-            var delay = DelayTendency.Focused;
-
-            var profile = new Profile(social, delay);
-
             //Act
             
             //Assert
             //1. that each item in Sociability is in the dictionary, and
             foreach (Sociability item in Enum.GetValues(typeof(Sociability)))
             {
-                Assert.IsTrue(profile.SociabilityWeights.ContainsKey(item));
+                Assert.IsTrue(_profile.SociabilityWeights.ContainsKey(item));
             }
             //2. that each item has a value associated with it.
-            foreach (var item in profile.SociabilityWeights)
+            foreach (var item in _profile.SociabilityWeights)
             {
                 Assert.IsTrue(item.Value > 0);
             }
@@ -66,23 +64,17 @@ namespace ModuleTesting
         public void Constructor_ShouldSetDelayTendencyWeights()
         {
             //Arrange
-            var social = Sociability.Stoic;
-
-            var delay = DelayTendency.Focused;
-
-            var profile = new Profile(social, delay);
 
             //Act
-
 
             //Assert
             //1. that each item in DelayTendency is in the dictionary, and
             foreach (DelayTendency item in Enum.GetValues(typeof(DelayTendency)))
             {
-                Assert.IsTrue(profile.DelayTendencyWeights.ContainsKey(item));
+                Assert.IsTrue(_profile.DelayTendencyWeights.ContainsKey(item));
             }
             //2. that each item has a value associated with it.
-            foreach (var item in profile.DelayTendencyWeights)
+            foreach (var item in _profile.DelayTendencyWeights)
             {
                 Assert.IsTrue(item.Value > 0);
             }
