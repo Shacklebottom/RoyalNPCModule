@@ -19,6 +19,8 @@ namespace ModuleTesting
 
         private readonly Sociability _socialHighEnd = Sociability.Chatty;
 
+        private Behavior _behavior;
+
         [TestInitialize]
         public void Initialize_BehaviorTest()
         {
@@ -41,6 +43,8 @@ namespace ModuleTesting
                 { _socialHighEnd, 0.9 } 
             };
             _mockProfile.Setup(p => p.SociabilityWeights).Returns(testSociabilityDictionary);
+
+            _behavior = new Behavior(_mockProfile.Object);
         }
 
 
@@ -51,20 +55,18 @@ namespace ModuleTesting
             //Arrange
 
             //Act
-            var behavior = new Behavior(_mockProfile.Object);
 
             //Assert
-            Assert.AreEqual(_mockProfile.Object, behavior.Profile);
+            Assert.AreEqual(_mockProfile.Object, _behavior.Profile);
         }
 
         [TestMethod]
         public void ChanceToSpeak_ReturnsADouble()
         {
             //Arrange
-            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.ChanceToSpeak;
+            var result = _behavior.ChanceToSpeak;
 
             //Assert
             Assert.IsInstanceOfType(result, typeof(double));
@@ -78,10 +80,10 @@ namespace ModuleTesting
 
             _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            var behavior = new Behavior(_mockProfile.Object);
+            _behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.ChanceToSpeak;
+            var result = _behavior.ChanceToSpeak;
 
             //Assert
             Assert.IsTrue(result > 0);
@@ -95,10 +97,10 @@ namespace ModuleTesting
 
             _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            var behavior = new Behavior(_mockProfile.Object);
+            _behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.ChanceToSpeak;
+            var result = _behavior.ChanceToSpeak;
 
             //Assert
             Assert.IsTrue(result != 0);
@@ -112,10 +114,10 @@ namespace ModuleTesting
 
             _mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
 
-            var behavior = new Behavior(_mockProfile.Object);
+            _behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.ChanceToSpeak;
+            var result = _behavior.ChanceToSpeak;
 
             //Assert
             Assert.IsTrue(result < 1);
@@ -129,10 +131,10 @@ namespace ModuleTesting
 
             _mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
 
-            var behavior = new Behavior(_mockProfile.Object);
+            _behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.ChanceToSpeak;
+            var result = _behavior.ChanceToSpeak;
 
             //Assert
             Assert.IsTrue(result != 1);
@@ -142,10 +144,9 @@ namespace ModuleTesting
         public void WaitLenience_ReturnsADouble()
         {
             //Arrange
-            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.WaitLenience;
+            var result = _behavior.WaitLenience;
 
             //Assert
             Assert.IsInstanceOfType(result, typeof(double));
@@ -159,10 +160,10 @@ namespace ModuleTesting
 
             _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            var behavior = new Behavior(_mockProfile.Object);
+            _behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.WaitLenience;
+            var result = _behavior.WaitLenience;
 
             //Assert
             Assert.IsTrue(result > 0);
@@ -176,10 +177,10 @@ namespace ModuleTesting
 
             _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            var behavior = new Behavior(_mockProfile.Object);
+            _behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.WaitLenience;
+            var result = _behavior.WaitLenience;
 
             //Assert
             Assert.IsTrue(result != 0);
@@ -193,10 +194,10 @@ namespace ModuleTesting
 
             _mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
 
-            var behavior = new Behavior(_mockProfile.Object);
+            _behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.WaitLenience;
+            var result = _behavior.WaitLenience;
 
             //Assert
             Assert.IsTrue(result < 1);
@@ -210,10 +211,10 @@ namespace ModuleTesting
 
             _mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
 
-            var behavior = new Behavior(_mockProfile.Object);
+            _behavior = new Behavior(_mockProfile.Object);
 
             //Act
-            var result = behavior.WaitLenience;
+            var result = _behavior.WaitLenience;
 
             //Assert
             Assert.IsTrue(result != 1);
