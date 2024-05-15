@@ -7,5 +7,9 @@ namespace RoyalDomain.Interfaces
         Sociability Sociability { get; }
 
         DelayTendency DelayTendency { get; }
+
+        Dictionary<Sociability, double> SociabilityWeights { get; }
+
+        Dictionary<DelayTendency, double> DelayTendencyWeights { get; }
     }
 }

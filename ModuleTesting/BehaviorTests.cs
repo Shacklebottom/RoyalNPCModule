@@ -27,49 +27,23 @@ namespace ModuleTesting
             _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
             _mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
+
+            var testDelayDictionary = new Dictionary<DelayTendency, double>
+            {
+                { _delayLowEnd, 0.1 },
+                { _delayHighEnd, 0.9 },
+            };
+            _mockProfile.Setup(p => p.DelayTendencyWeights).Returns(testDelayDictionary);
+
+            var testSociabilityDictionary = new Dictionary<Sociability, double>
+            {
+                { _socialLowEnd, 0.1 },
+                { _socialHighEnd, 0.9 } 
+            };
+            _mockProfile.Setup(p => p.SociabilityWeights).Returns(testSociabilityDictionary);
         }
 
-        [TestMethod]
-        public void Constructor_ShouldSetSociabilityWeights()
-        {
-            //Arrange
 
-            //Act
-            var behavior = new Behavior(_mockProfile.Object);
-
-            //Assert
-            //1. that each item in Sociability is in the dictionary, and
-            foreach (Sociability item in Enum.GetValues(typeof(Sociability)))
-            {
-                Assert.IsTrue(behavior.SociabilityWeights.ContainsKey(item));
-            }
-            //2. that each item has a value associated with it.
-            foreach (var item in behavior.SociabilityWeights)
-            {
-                Assert.IsTrue(item.Value > 0);
-            }
-        }
-
-        [TestMethod]
-        public void Constructor_ShouldSetDelayTendencyWeights()
-        {
-            //Arrange
-
-            //Act
-            var behavior = new Behavior(_mockProfile.Object);
-
-            //Assert
-            //1. that each item in DelayTendency is in the dictionary, and
-            foreach (DelayTendency item in Enum.GetValues(typeof(DelayTendency)))
-            {
-                Assert.IsTrue(behavior.DelayTendencyWeights.ContainsKey(item));
-            }
-            //2. that each item has a value associated with it.
-            foreach (var item in behavior.DelayTendencyWeights)
-            {
-                Assert.IsTrue(item.Value > 0);
-            }
-        }
 
         [TestMethod]
         public void Constructor_ShouldSetProfile()
@@ -100,13 +74,11 @@ namespace ModuleTesting
         public void ChanceToSpeak_ShouldNotReturn_LessThanZero()
         {
             //Arrange
-            Mock<IProfile> mockProfile = new Mock<IProfile>();
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
 
-            mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
-
-            var behavior = new Behavior(mockProfile.Object);
+            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
             var result = behavior.ChanceToSpeak;
@@ -119,13 +91,11 @@ namespace ModuleTesting
         public void ChanceToSpeak_ShouldNotReturn_ExactlyZero()
         {
             //Arrange
-            Mock<IProfile> mockProfile = new Mock<IProfile>();
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
 
-            mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
-
-            var behavior = new Behavior(mockProfile.Object);
+            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
             var result = behavior.ChanceToSpeak;
@@ -138,13 +108,11 @@ namespace ModuleTesting
         public void ChanceToSpeak_ShouldNotReturn_GreaterThanOne()
         {
             //Arrange
-            Mock<IProfile> mockProfile = new Mock<IProfile>();
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
 
-            mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
 
-            mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
-
-            var behavior = new Behavior(mockProfile.Object);
+            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
             var result = behavior.ChanceToSpeak;
@@ -157,13 +125,11 @@ namespace ModuleTesting
         public void ChanceToSpeak_ShouldNotReturn_ExactlyOne()
         {
             //Arrange
-            Mock<IProfile> mockProfile = new Mock<IProfile>();
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
 
-            mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
 
-            mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
-
-            var behavior = new Behavior(mockProfile.Object);
+            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
             var result = behavior.ChanceToSpeak;
@@ -189,13 +155,11 @@ namespace ModuleTesting
         public void WaitLenience_ShouldNotReturn_LessThanZero()
         {
             //Arrange
-            Mock<IProfile> mockProfile = new Mock<IProfile>();
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
 
-            mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
-
-            var behavior = new Behavior(mockProfile.Object);
+            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
             var result = behavior.WaitLenience;
@@ -208,13 +172,11 @@ namespace ModuleTesting
         public void WaitLenience_ShouldNotReturn_ExactlyZero()
         {
             //Arrange
-            Mock<IProfile> mockProfile = new Mock<IProfile>();
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
 
-            mockProfile.Setup(p => p.DelayTendency).Returns(_delayLowEnd);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
 
-            mockProfile.Setup(p => p.Sociability).Returns(_socialLowEnd);
-
-            var behavior = new Behavior(mockProfile.Object);
+            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
             var result = behavior.WaitLenience;
@@ -227,13 +189,11 @@ namespace ModuleTesting
         public void WaitLenience_ShouldNotReturn_GreaterThanOne()
         {
             //Arrange
-            Mock<IProfile> mockProfile = new Mock<IProfile>();
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
 
-            mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
 
-            mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
-
-            var behavior = new Behavior(mockProfile.Object);
+            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
             var result = behavior.WaitLenience;
@@ -246,13 +206,11 @@ namespace ModuleTesting
         public void WaitLenience_ShouldNotReturn_ExactlyOne()
         {
             //Arrange
-            Mock<IProfile> mockProfile = new Mock<IProfile>();
+            _mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
 
-            mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
+            _mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
 
-            mockProfile.Setup(p => p.Sociability).Returns(_socialHighEnd);
-
-            var behavior = new Behavior(mockProfile.Object);
+            var behavior = new Behavior(_mockProfile.Object);
 
             //Act
             var result = behavior.WaitLenience;
