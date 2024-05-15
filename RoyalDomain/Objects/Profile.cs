@@ -3,34 +3,36 @@ using RoyalDomain.Interfaces;
 
 namespace RoyalDomain.Objects
 {
-    public class Profile : IProfile
+    public class Profile(Sociability sociability, DelayTendency delayTendency) : IProfile
     {
-        public Sociability Sociability { get; set; }
+        public Sociability Sociability { get; set; } = sociability;
 
-        public DelayTendency DelayTendency { get; set; }
+        public DelayTendency DelayTendency { get; set; } = delayTendency;
 
-        public Dictionary<Sociability, double> SociabilityWeights { get; set; }
-
-        public Dictionary<DelayTendency, double> DelayTendencyWeights { get; set; }
-
-        //Constructor
-        public Profile(Sociability sociability, DelayTendency delayTendency)
+        public Dictionary<Sociability, double> SociabilityWeights
         {
-            Sociability = sociability;
-
-            DelayTendency = delayTendency;
-
-            SociabilityWeights = new Dictionary<Sociability, double>
+            get
             {
-                { Sociability.Chatty, 0.9 },
-                { Sociability.Stoic, 0.1 },
-            };
+                var weights = new Dictionary<Sociability, double>
+                {
+                    { Sociability.Chatty, 0.9 },
+                    { Sociability.Stoic, 0.1 },
+                };
+                return weights;
+            }
+        }
 
-            DelayTendencyWeights = new Dictionary<DelayTendency, double>
+        public Dictionary<DelayTendency, double> DelayTendencyWeights 
+        { 
+            get
             {
-                { DelayTendency.Distracted, 0.9 },
-                { DelayTendency.Focused, 0.1 },
-            };
+                var weights = new Dictionary<DelayTendency, double> 
+                {
+                    { DelayTendency.Distracted, 0.9 },
+                    { DelayTendency.Focused, 0.1 },
+                };
+                return weights;
+            }        
         }
     }
 }

@@ -3,9 +3,9 @@ using RoyalDomain.Interfaces;
 
 namespace RoyalDomain.Objects
 {
-    public class Behavior : IBehavior
+    public class Behavior(IProfile profile) : IBehavior
     {
-        public IProfile Profile { get; set; }
+        public IProfile Profile { get; set; } = profile;
 
         public double ChanceToSpeak
         {
@@ -27,14 +27,6 @@ namespace RoyalDomain.Objects
                     Profile.SociabilityWeights[Profile.Sociability] * 0.4;
                 return baseLenience;
             }
-        }
-
-        //Constructor
-        public Behavior(IProfile profile)
-        {
-            Profile = profile;
-
-
         }
     }
 }

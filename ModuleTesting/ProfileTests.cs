@@ -42,7 +42,7 @@ namespace ModuleTesting
             Assert.AreEqual(_delay, _profile.DelayTendency);
         }
         [TestMethod]
-        public void Constructor_ShouldSetSociabilityWeights()
+        public void Property_ShouldSetSociabilityWeights()
         {
             //Arrange
             //Act
@@ -61,7 +61,7 @@ namespace ModuleTesting
         }
 
         [TestMethod]
-        public void Constructor_ShouldSetDelayTendencyWeights()
+        public void Property_ShouldSetDelayTendencyWeights()
         {
             //Arrange
 
