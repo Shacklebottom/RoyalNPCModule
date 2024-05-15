@@ -3,17 +3,16 @@ using RoyalDomain.Interfaces;
 
 namespace RoyalDomain.Objects
 {
-    public abstract class Dialogue : IDialogue
+    public abstract class Dialogue(IProfile profile) : IDialogue
     {
-        public IProfile Profile { get; set; }
+        public IProfile Profile { get; set; } = profile;
 
-        public List<string> Lines { get; set; }
-
-        public Dialogue(IProfile profile)
+        public List<string> Lines
         {
-            Profile = profile;
-
-            Lines = GetLines();
+            get
+            {
+                return GetLines();
+            }
         }
 
         public abstract List<string> GetLines();

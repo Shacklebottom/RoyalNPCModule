@@ -8,7 +8,7 @@ namespace ModuleTesting
     [TestClass]
     public class DialogueTests
     {
-        //Notice! What we're doin' is tightly coupling GetLines() with the Lines property through the Dialogue obj's Constructor.
+        //Notice! What we're doin' is tightly coupling GetLines() with the Lines property through its custom getter.
         
         private Mock<IProfile> _profile;
 
@@ -19,13 +19,8 @@ namespace ModuleTesting
 
         }
 
-        public class TestDialogue : Dialogue
+        public class TestDialogue(IProfile profile) : Dialogue(profile)
         {
-            public TestDialogue(IProfile profile) : base(profile)
-            {
-
-            }
-
             public override List<string> GetLines()
             {
                 return new List<string>()
@@ -62,7 +57,7 @@ namespace ModuleTesting
         }
 
         [TestMethod]
-        public void Constructor_ShouldSetLines_WithGetLines()
+        public void Lines_ShouldBeSet_WithGetLines()
         {
             //Arrange
             var dialog = new TestDialogue(_profile.Object);
