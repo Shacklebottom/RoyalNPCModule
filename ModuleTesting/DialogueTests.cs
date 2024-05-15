@@ -12,22 +12,25 @@ namespace ModuleTesting
         
         private Mock<IProfile> _profile;
 
+        private Dialogue _dialog;
+
         [TestInitialize]
         public void Initialize_DialogueTests()
         {
             _profile = new Mock<IProfile>();
 
+            _dialog = new TestDialogue(_profile.Object);
         }
 
         public class TestDialogue(IProfile profile) : Dialogue(profile)
         {
             public override List<string> GetLines()
             {
-                return new List<string>()
-                {
+                return
+                [
                 "Ya'know, I really like trains",
                 "A train on time is worth grapes on the vine"
-                };
+                ];
             }
         }
 
@@ -35,22 +38,20 @@ namespace ModuleTesting
         public void Constructor_ShouldSetProfile()
         {
             //Arrange
-            var dialog = new TestDialogue(_profile.Object);
 
             //Act
 
             //Assert
-            Assert.AreEqual(_profile.Object, dialog.Profile);
+            Assert.AreEqual(_profile.Object, _dialog.Profile);
         }
 
         [TestMethod]
         public void GetLines_ShouldReturnAnOccupiedCollection()
         {
             //Arrange
-            var dialog = new TestDialogue(_profile.Object);
 
             //Act
-            var result = dialog.GetLines();
+            var result = _dialog.GetLines();
 
             //Assert
             Assert.IsTrue(result.Count > 0);
@@ -60,13 +61,12 @@ namespace ModuleTesting
         public void Lines_ShouldBeSet_WithGetLines()
         {
             //Arrange
-            var dialog = new TestDialogue(_profile.Object);
 
             //Act
-            var result = dialog.GetLines();
+            var result = _dialog.GetLines();
 
             //Assert
-            Assert.IsTrue(dialog.Lines.All(result.Contains));
+            Assert.IsTrue(_dialog.Lines.All(result.Contains));
         }
     }
 }
