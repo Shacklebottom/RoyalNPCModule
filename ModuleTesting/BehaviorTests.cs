@@ -55,7 +55,8 @@ namespace ModuleTesting
             //Act
 
             //Assert
-            Assert.AreEqual(_mockProfile.Object, _behavior.Profile);
+            Assert.AreEqual(_mockProfile.Object, _behavior.Profile,
+                "the constructor is not setting the Profile field");
         }
 
         [TestMethod]
@@ -67,14 +68,20 @@ namespace ModuleTesting
             _mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
 
             //Act
-            var expectedResult = _behavior.ChanceToSpeak;
+            var actualResult = _behavior.ChanceToSpeak;
 
             //Assert
-            var actualResult =
-                    _mockProfile.Object.SociabilityWeights[_mockProfile.Object.Sociability] * 0.7 +
-                    _mockProfile.Object.DelayTendencyWeights[_mockProfile.Object.DelayTendency] * 0.3;
+            var socialWeight = _mockProfile.Object.SociabilityWeights[_mockProfile.Object.Sociability];
 
-            Assert.AreEqual(expectedResult, actualResult);
+            var delayWeight = _mockProfile.Object.DelayTendencyWeights[_mockProfile.Object.DelayTendency];
+
+            var expectedResult =
+                    socialWeight * 0.7 +
+                    delayWeight * 0.3;
+
+            Assert.AreEqual(expectedResult, actualResult,
+                "ChanceToSpeak weights or values are somehow off:" +
+                $"expected: {expectedResult}, actual: {actualResult}");
         }
 
         [TestMethod]
@@ -86,7 +93,8 @@ namespace ModuleTesting
             var result = _behavior.ChanceToSpeak;
 
             //Assert
-            Assert.AreEqual(typeof(double), result.GetType());
+            Assert.AreEqual(typeof(double), result.GetType(), 
+                $"ChanceToSpeak returned as type {result.GetType()} when double was expected");
         }
 
         [TestMethod]
@@ -103,7 +111,8 @@ namespace ModuleTesting
             var result = _behavior.ChanceToSpeak;
 
             //Assert
-            Assert.IsTrue(result < 1);
+            Assert.IsTrue(result < 1, 
+                "ChanceToSpeak returned greater than one");
         }
 
         [TestMethod]
@@ -120,7 +129,8 @@ namespace ModuleTesting
             var result = _behavior.ChanceToSpeak;
 
             //Assert
-            Assert.IsTrue(result > 0);
+            Assert.IsTrue(result > 0,
+                "ChanceToSpeak returned less than zero");
         }
 
         [TestMethod]
@@ -132,14 +142,20 @@ namespace ModuleTesting
             _mockProfile.Setup(p => p.DelayTendency).Returns(_delayHighEnd);
 
             //Act
-            var expectedResult = _behavior.WaitLenience;
+            var actualResult = _behavior.WaitLenience;
+
+            var socialWeight = _mockProfile.Object.SociabilityWeights[_mockProfile.Object.Sociability];
+
+            var delayWeight = _mockProfile.Object.DelayTendencyWeights[_mockProfile.Object.DelayTendency];
 
             //Assert
-            var actualResult =
-                    _mockProfile.Object.DelayTendencyWeights[_mockProfile.Object.DelayTendency] * 0.6 +
-                    _mockProfile.Object.SociabilityWeights[_mockProfile.Object.Sociability] * 0.4;
+            var expectedResult =
+                    delayWeight * 0.6 +
+                    socialWeight * 0.4;
 
-            Assert.AreEqual(expectedResult, actualResult);
+            Assert.AreEqual(expectedResult, actualResult, 
+                "WaitLenience weights or values are somehow off:" +
+                $"expected: {expectedResult}, actual: {actualResult}");
         }
 
         [TestMethod]
@@ -151,7 +167,8 @@ namespace ModuleTesting
             var result = _behavior.WaitLenience;
 
             //Assert
-            Assert.AreEqual(typeof(double), result.GetType());
+            Assert.AreEqual(typeof(double), result.GetType(), 
+                $"WaitLenience returned as type {result.GetType()} when double was expected");
         }
 
         [TestMethod]
@@ -168,7 +185,8 @@ namespace ModuleTesting
             var result = _behavior.WaitLenience;
 
             //Assert
-            Assert.IsTrue(result < 1);
+            Assert.IsTrue(result < 1, 
+                "WaitLenience returned greater than one");
         }
 
         [TestMethod]
@@ -185,7 +203,8 @@ namespace ModuleTesting
             var result = _behavior.WaitLenience;
 
             //Assert
-            Assert.IsTrue(result > 0);
+            Assert.IsTrue(result > 0, 
+                "WaitLenience returned less than zero");
         }
     }
 }

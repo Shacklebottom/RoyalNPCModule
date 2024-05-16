@@ -35,7 +35,8 @@ namespace ModuleTesting
             //Act
 
             //Assert
-            Assert.AreEqual(_mockBehavior.Object, _character.Behavior);
+            Assert.AreEqual(_mockBehavior.Object, _character.Behavior, 
+                "the constructor is not setting the Behavior field");
         }
 
         [TestMethod]
@@ -46,7 +47,8 @@ namespace ModuleTesting
             //Act
 
             //Assert
-            Assert.AreEqual(_mockRandom.Object, _character.Random);
+            Assert.AreEqual(_mockRandom.Object, _character.Random, 
+                "the constructor is not setting the Random field");
         }
 
         [TestMethod]
@@ -58,7 +60,8 @@ namespace ModuleTesting
             var result = _character.ShallCharacterSpeak();
 
             //Assert
-            _mockRandom.Verify(r => r.NextDouble(), Times.Once);
+            _mockRandom.Verify(r => r.NextDouble(), Times.Once, 
+                "NextDouble() was not called exactly once");
         }
 
         [TestMethod]
@@ -73,7 +76,8 @@ namespace ModuleTesting
             var result = _character.ShallCharacterSpeak();
 
             //Assert
-            Assert.IsFalse(result);
+            Assert.IsFalse(result, 
+                "ShallCharacterSpeak() returned true when false was expected");
         }
 
         [TestMethod]
@@ -88,7 +92,8 @@ namespace ModuleTesting
             var result = _character.ShallCharacterSpeak();
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.IsTrue(result, 
+                "ShallCharacterSpeak() returned false when true was expected");
         }
 
         [TestMethod]
@@ -104,7 +109,8 @@ namespace ModuleTesting
             var result = _character.ShallCharacterSpeak();
 
             //Assert
-            Assert.IsTrue(result);
+            Assert.IsTrue(result, 
+                "ShallCharacterSpeak() returned false when true was expected");
         }
     }
 }

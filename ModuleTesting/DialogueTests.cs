@@ -42,7 +42,8 @@ namespace ModuleTesting
             //Act
 
             //Assert
-            Assert.AreEqual(_profile.Object, _dialog.Profile);
+            Assert.AreEqual(_profile.Object, _dialog.Profile, 
+                "the constructor is not setting the Profile field");
         }
 
         [TestMethod]
@@ -54,7 +55,8 @@ namespace ModuleTesting
             var result = _dialog.GetLines();
 
             //Assert
-            Assert.IsTrue(result.Count > 0);
+            Assert.IsTrue(result.Count > 0, 
+                "GetLines() did not return any elements");
         }
 
         [TestMethod]
@@ -66,7 +68,8 @@ namespace ModuleTesting
             var result = _dialog.GetLines();
 
             //Assert
-            Assert.IsTrue(_dialog.Lines.All(result.Contains));
+            Assert.IsTrue(_dialog.Lines.All(result.Contains), 
+                "the Lines field is not being set by GetLines()");
         }
     }
 }

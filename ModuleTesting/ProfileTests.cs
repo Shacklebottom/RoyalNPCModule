@@ -28,7 +28,8 @@ namespace ModuleTesting
             //Act
 
             //Assert
-            Assert.AreEqual(_social, _profile.Sociability);
+            Assert.AreEqual(_social, _profile.Sociability, 
+                "the constructor is not setting the Sociability field");
         }
 
         [TestMethod]
@@ -39,7 +40,8 @@ namespace ModuleTesting
             //Act
 
             //Assert
-            Assert.AreEqual(_delay, _profile.DelayTendency);
+            Assert.AreEqual(_delay, _profile.DelayTendency, 
+                "the constructor is not setting the DelayTendency field");
         }
 
         [TestMethod]
@@ -53,7 +55,8 @@ namespace ModuleTesting
             //1. that each item in Sociability is in the dictionary
             foreach (Sociability item in Enum.GetValues(typeof(Sociability)))
             {
-                Assert.IsTrue(_profile.SociabilityWeights.ContainsKey(item));
+                Assert.IsTrue(_profile.SociabilityWeights.ContainsKey(item), 
+                    $"dictionary does not contain key: {item}");
             }
         }
 
@@ -67,7 +70,8 @@ namespace ModuleTesting
             //Assert
             foreach (var item in _profile.SociabilityWeights)
             {
-                Assert.AreEqual(typeof(double), item.Value.GetType());
+                Assert.AreEqual(typeof(double), item.Value.GetType(), 
+                    $"element is of type {item.Value.GetType()}, when double was expected");
             }
         }
 
@@ -81,7 +85,8 @@ namespace ModuleTesting
             //Assert
             foreach (var item in _profile.SociabilityWeights)
             {
-                Assert.IsTrue(item.Value < 1);
+                Assert.IsTrue(item.Value < 1, 
+                    $"element: {item.Key} has a value greater than one");
             }
         }
 
@@ -95,7 +100,8 @@ namespace ModuleTesting
             //Assert
             foreach (var item in _profile.SociabilityWeights)
             {
-                Assert.IsTrue(item.Value > 0);
+                Assert.IsTrue(item.Value > 0, 
+                    $"element: {item.Key} has a value less than 0");
             }
         }
 
@@ -110,7 +116,8 @@ namespace ModuleTesting
             //1. that each item in DelayTendency is in the dictionary
             foreach (DelayTendency item in Enum.GetValues(typeof(DelayTendency)))
             {
-                Assert.IsTrue(_profile.DelayTendencyWeights.ContainsKey(item));
+                Assert.IsTrue(_profile.DelayTendencyWeights.ContainsKey(item), 
+                    $"dictionary does not contain key: {item}");
             }
         }
 
@@ -124,7 +131,8 @@ namespace ModuleTesting
             //Assert
             foreach (var item in _profile.DelayTendencyWeights)
             {
-                Assert.AreEqual(typeof(double), item.Value.GetType());
+                Assert.AreEqual(typeof(double), item.Value.GetType(),
+                    $"element is of type {item.Value.GetType()}, when double was expected");
             }
         }
 
@@ -138,7 +146,8 @@ namespace ModuleTesting
             //Assert
             foreach (var item in _profile.DelayTendencyWeights)
             {
-                Assert.IsTrue(item.Value < 1.0);
+                Assert.IsTrue(item.Value < 1.0, 
+                    $"element: {item.Key} has a value greater than one");
             }
         }
 
@@ -152,7 +161,8 @@ namespace ModuleTesting
             //Assert
             foreach (var item in _profile.DelayTendencyWeights)
             {
-                Assert.IsTrue(item.Value > 0.0);
+                Assert.IsTrue(item.Value > 0.0, 
+                    $"element: {item.Key} has a value less than zero");
             }
         }
     }

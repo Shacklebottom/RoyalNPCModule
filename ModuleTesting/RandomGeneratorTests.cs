@@ -17,9 +17,11 @@ namespace ModuleTesting
 
             //Assert
             //1. that the result is greater than zero, and
-            Assert.IsTrue(result > 0);
+            Assert.IsTrue(result > 0,
+                $"the result was less than zero; result: {result}");
             //2. that the result is less than one.
-            Assert.IsTrue(result < 1);
+            Assert.IsTrue(result < 1, 
+                $"the result was greater than one; result: {result}");
         }
 
         [TestMethod]
@@ -32,7 +34,8 @@ namespace ModuleTesting
             var result = random.NextDouble();
 
             //Assert
-            Assert.IsInstanceOfType(result, typeof(double));
+            Assert.AreEqual(typeof(double), result.GetType(), 
+                $"result was type {result.GetType()} when double was expected");
         }
     }
 }
