@@ -77,7 +77,7 @@ namespace ModuleTesting
 
             //Assert
             Assert.IsFalse(result, 
-                "ShallCharacterSpeak() returned true when false was expected");
+                $"ShallCharacterSpeak() returned {result} when false was expected");
         }
 
         [TestMethod]
@@ -93,7 +93,7 @@ namespace ModuleTesting
 
             //Assert
             Assert.IsTrue(result, 
-                "ShallCharacterSpeak() returned false when true was expected");
+                $"ShallCharacterSpeak() returned {result} when true was expected");
         }
 
         [TestMethod]
@@ -110,7 +110,7 @@ namespace ModuleTesting
 
             //Assert
             Assert.IsTrue(result, 
-                "ShallCharacterSpeak() returned false when true was expected");
+                $"ShallCharacterSpeak() returned {result} when true was expected");
         }
     }
 }

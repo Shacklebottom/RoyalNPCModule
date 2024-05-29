@@ -112,7 +112,7 @@ namespace ModuleTesting
 
             //Assert
             Assert.IsTrue(result < 1, 
-                "ChanceToSpeak returned greater than one");
+                $"ChanceToSpeak returned greater than one; result: {result}");
         }
 
         [TestMethod]
@@ -130,7 +130,7 @@ namespace ModuleTesting
 
             //Assert
             Assert.IsTrue(result > 0,
-                "ChanceToSpeak returned less than zero");
+                $"ChanceToSpeak returned less than zero; result: {result}");
         }
 
         [TestMethod]
@@ -186,7 +186,7 @@ namespace ModuleTesting
 
             //Assert
             Assert.IsTrue(result < 1, 
-                "WaitLenience returned greater than one");
+                $"WaitLenience returned greater than one; result: {result}");
         }
 
         [TestMethod]
@@ -204,7 +204,7 @@ namespace ModuleTesting
 
             //Assert
             Assert.IsTrue(result > 0, 
-                "WaitLenience returned less than zero");
+                $"WaitLenience returned less than zero; result: {result}");
         }
     }
 }

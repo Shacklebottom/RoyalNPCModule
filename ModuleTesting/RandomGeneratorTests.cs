@@ -35,7 +35,7 @@ namespace ModuleTesting
 
             //Assert
             Assert.AreEqual(typeof(double), result.GetType(), 
-                $"result was type {result.GetType()} when double was expected");
+                $"result was type: {result.GetType()} when double was expected");
         }
     }
 }
