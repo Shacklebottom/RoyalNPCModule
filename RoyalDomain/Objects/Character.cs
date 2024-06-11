@@ -16,10 +16,5 @@ namespace RoyalDomain.Objects
             }
             return false;
         }
-
-        public TimeSpan GetDelay()
-        {
-            return TimeSpan.FromMilliseconds(Behavior.WaitLenience * 1);
-        }
     }
 }

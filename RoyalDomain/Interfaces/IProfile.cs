@@ -4,9 +4,9 @@ namespace RoyalDomain.Interfaces
 {
     public interface IProfile
     {
-        Sociability Sociability { get; }
+        double SocialValue { get; }
 
-        DelayTendency DelayTendency { get; }
+        double DelayValue { get; }
 
         Dictionary<Sociability, double> SociabilityWeights { get; }
 

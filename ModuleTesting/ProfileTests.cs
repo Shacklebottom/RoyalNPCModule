@@ -21,27 +21,31 @@ namespace ModuleTesting
         }
 
         [TestMethod]
-        public void Constructor_ShouldSetSociability()
+        public void SocialValue_ShouldYieldWeight_BasedOnEnum()
         {
             //Arrange
 
+
             //Act
 
+
             //Assert
-            Assert.AreEqual(_social, _profile.Sociability, 
-                "the constructor is not setting the Sociability field");
+            var socialWeight = _profile.SociabilityWeights[_social];
+            Assert.AreEqual(socialWeight, _profile.SocialValue);
         }
 
         [TestMethod]
-        public void Constructor_ShouldSetDelayTendency()
+        public void DelayValue_ShouldYieldWeight_BasedOnEnum()
         {
             //Arrange
 
+
             //Act
 
+
             //Assert
-            Assert.AreEqual(_delay, _profile.DelayTendency, 
-                "the constructor is not setting the DelayTendency field");
+            var delayWeight = _profile.DelayTendencyWeights[_delay];
+            Assert.AreEqual(delayWeight, _profile.DelayValue);
         }
 
         [TestMethod]

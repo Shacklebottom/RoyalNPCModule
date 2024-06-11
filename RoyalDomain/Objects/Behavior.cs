@@ -8,12 +8,12 @@ namespace RoyalDomain.Objects
         public IProfile Profile { get; set; } = profile;
 
         public double ChanceToSpeak
-        {
+        { 
             get
             {
                 var baseChance =
-                    Profile.SociabilityWeights[Profile.Sociability] * 0.7 +
-                    Profile.DelayTendencyWeights[Profile.DelayTendency] * 0.3;
+                    Profile.SocialValue * 0.7 +
+                    Profile.DelayValue * 0.3;
                 return baseChance;
             }
         }
@@ -23,8 +23,8 @@ namespace RoyalDomain.Objects
             get
             {
                 var baseLenience =
-                    Profile.DelayTendencyWeights[Profile.DelayTendency] * 0.6 +
-                    Profile.SociabilityWeights[Profile.Sociability] * 0.4;
+                    Profile.DelayValue * 0.6 +
+                    Profile.SocialValue * 0.4;
                 return baseLenience;
             }
         }

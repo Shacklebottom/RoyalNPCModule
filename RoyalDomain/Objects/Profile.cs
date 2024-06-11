@@ -5,9 +5,25 @@ namespace RoyalDomain.Objects
 {
     public class Profile(Sociability sociability, DelayTendency delayTendency) : IProfile
     {
-        public Sociability Sociability { get; set; } = sociability;
+        public double SocialValue 
+        { 
+            get
+            {
+                var value = SociabilityWeights[sociability];
 
-        public DelayTendency DelayTendency { get; set; } = delayTendency;
+                return value;
+            }
+        }
+
+        public double DelayValue
+        {
+            get
+            {
+                var value = DelayTendencyWeights[delayTendency];
+
+                return value;
+            }
+        }
 
         public Dictionary<Sociability, double> SociabilityWeights
         {
