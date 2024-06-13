@@ -4,6 +4,8 @@ using RoyalDomain.Enums;
 using RoyalDomain.Objects;
 using Moq;
 
+#pragma warning disable CS8618
+
 namespace ModuleTesting
 {
     [TestClass]

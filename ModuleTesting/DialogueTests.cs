@@ -3,6 +3,8 @@ using Moq;
 using RoyalDomain.Interfaces;
 using RoyalDomain.Objects;
 
+#pragma warning disable CS8618
+
 namespace ModuleTesting
 {
     [TestClass]

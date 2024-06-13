@@ -4,6 +4,8 @@ using RoyalDomain.Enums;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
+#pragma warning disable CS8618
+
 namespace ModuleTesting
 {
     [TestClass]

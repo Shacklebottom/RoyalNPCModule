@@ -2,6 +2,7 @@
 using RoyalDomain.Objects;
 using RoyalDomain.Enums;
 
+#pragma warning disable CS8618
 
 namespace ModuleTesting
 {

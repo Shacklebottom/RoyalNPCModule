@@ -1,5 +1,7 @@
 ﻿using RoyalDomain.Interfaces;
 
+#pragma warning disable IDE1006
+
 namespace RoyalDomain.Objects
 {
     public class RandomGenerator : IRandomGenerator
