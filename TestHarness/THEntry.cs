@@ -6,7 +6,7 @@ using TestHarness;
  * 
  */
 
-var _social = Sociability.Stoic;
+var _social = SocialTendency.Stoic;
 
 var _delay = DelayTendency.Focused;
 

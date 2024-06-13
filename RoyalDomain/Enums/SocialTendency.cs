@@ -1,6 +1,6 @@
 ﻿namespace RoyalDomain.Enums
 {
-    public enum Sociability
+    public enum SocialTendency
     {
         Chatty,
         Stoic

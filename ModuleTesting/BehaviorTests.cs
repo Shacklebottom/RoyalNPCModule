@@ -13,17 +13,9 @@ namespace ModuleTesting
     {
         private Mock<IProfile> _mockProfile;
 
-        private readonly double _delayLowEnd = 0.1;
+        private readonly double _expectedLowEnd = 0.1;
 
-        private readonly double _delayHighEnd = 0.9;
-
-        private readonly double _socialLowEnd = 0.1;
-
-        private readonly double _socialHighEnd = 0.9;
-
-        private readonly double _fidgetLowEnd = 0.1;
-
-        private readonly double _fidgetHighEnd = 0.9;
+        private readonly double _expectedHighEnd = 0.9;
 
         private Behavior _behavior;
 
@@ -32,11 +24,11 @@ namespace ModuleTesting
         {
             _mockProfile = new Mock<IProfile>();
 
-            _mockProfile.Setup(p => p.SocialValue).Returns(_socialLowEnd);
+            _mockProfile.Setup(p => p.SocialValue).Returns(_expectedLowEnd);
 
-            _mockProfile.Setup(p => p.DelayValue).Returns(_delayLowEnd);
+            _mockProfile.Setup(p => p.DelayValue).Returns(_expectedLowEnd);
 
-            _mockProfile.Setup(p => p.FidgetValue).Returns(_fidgetLowEnd);
+            _mockProfile.Setup(p => p.FidgetValue).Returns(_expectedLowEnd);
 
             _behavior = new Behavior(_mockProfile.Object);
         }
@@ -70,9 +62,9 @@ namespace ModuleTesting
         public void ChanceToSpeak_ShouldReturn_LessThanOne()
         {
             //Arrange
-            _mockProfile.Setup(p => p.DelayValue).Returns(_delayHighEnd);
+            _mockProfile.Setup(p => p.DelayValue).Returns(_expectedHighEnd);
 
-            _mockProfile.Setup(p => p.SocialValue).Returns(_socialHighEnd);
+            _mockProfile.Setup(p => p.SocialValue).Returns(_expectedHighEnd);
 
             _behavior = new Behavior(_mockProfile.Object);
 
@@ -115,9 +107,9 @@ namespace ModuleTesting
         public void WaitLenience_ShouldReturn_LessThanOne()
         {
             //Arrange
-            _mockProfile.Setup(p => p.DelayValue).Returns(_delayHighEnd);
+            _mockProfile.Setup(p => p.DelayValue).Returns(_expectedHighEnd);
 
-            _mockProfile.Setup(p => p.SocialValue).Returns(_socialHighEnd);
+            _mockProfile.Setup(p => p.SocialValue).Returns(_expectedHighEnd);
 
             _behavior = new Behavior(_mockProfile.Object);
 
@@ -148,23 +140,21 @@ namespace ModuleTesting
         {
             //Arrange
 
-
             //Act
             var result = _behavior.ChanceToFidget;
 
             //Assert
             Assert.AreEqual(typeof(double), result.GetType(),
-                $"ChanceToFidget returned as type {result.GetType()} when double was expected");
-
+                $"ChanceToFidget returned as type {result.GetType()} when double was expected")
         }
 
         [TestMethod]
         public void ChanceToFidget_ShouldReturn_LessThanOne()
         {
             //Arrange
-            _mockProfile.Setup(p => p.FidgetValue).Returns(_fidgetHighEnd);
+            _mockProfile.Setup(p => p.FidgetValue).Returns(_expectedHighEnd);
 
-            _mockProfile.Setup(p => p.DelayValue).Returns(_delayHighEnd);
+            _mockProfile.Setup(p => p.DelayValue).Returns(_expectedHighEnd);
 
             _behavior = new Behavior(_mockProfile.Object);
 
@@ -174,7 +164,6 @@ namespace ModuleTesting
             //Assert
             Assert.IsTrue(result < 1,
                 $"ChanceToFidget returned greater than one; result: {result}");
-
         }
 
         [TestMethod]

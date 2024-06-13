@@ -106,7 +106,6 @@ namespace ModuleTesting
 
             _mockBehavior.Setup(b => b.ChanceToSpeak).Returns(0.2);
 
-
             //Act
             var result = _character.ShallCharacterSpeak();
 
@@ -128,7 +127,6 @@ namespace ModuleTesting
                 $"GetCharacterWaitPeriod() returned as type {result.GetType()} when int was expected");
 
         }
-
 
         [TestMethod]
         public void GetCharacterWaitPeriod_ShouldReturn_LessThan90000()
@@ -211,7 +209,6 @@ namespace ModuleTesting
 
             _mockBehavior.Setup(b => b.ChanceToFidget).Returns(0.2);
 
-
             //Act
             var result = _character.ShallCharacterFidget();
 
@@ -219,6 +216,5 @@ namespace ModuleTesting
             Assert.IsTrue(result,
                 $"ShallCharacterFidget() returned {result} when true was expected");
         }
-
     }
 }

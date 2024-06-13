@@ -10,7 +10,7 @@ namespace RoyalDomain.Interfaces
 
         double FidgetValue { get; }
 
-        Dictionary<Sociability, double> SociabilityWeights { get; }
+        Dictionary<SocialTendency, double> SociabilityWeights { get; }
 
         Dictionary<DelayTendency, double> DelayTendencyWeights { get; }
 

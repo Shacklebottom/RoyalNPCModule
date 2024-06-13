@@ -9,7 +9,7 @@ namespace ModuleTesting
     [TestClass]
     public class ProfileTests
     {
-        private readonly Sociability _social = Sociability.Stoic;
+        private readonly SocialTendency _social = SocialTendency.Stoic;
 
         private readonly DelayTendency _delay = DelayTendency.Focused;
 
@@ -28,9 +28,7 @@ namespace ModuleTesting
         {
             //Arrange
 
-
             //Act
-
 
             //Assert
             var socialWeight = _profile.SociabilityWeights[_social];
@@ -43,9 +41,7 @@ namespace ModuleTesting
         {
             //Arrange
 
-
             //Act
-
 
             //Assert
             var delayWeight = _profile.DelayTendencyWeights[_delay];
@@ -75,7 +71,7 @@ namespace ModuleTesting
             
             //Assert
             //1. that each item in Sociability is in the dictionary
-            foreach (Sociability item in Enum.GetValues(typeof(Sociability)))
+            foreach (SocialTendency item in Enum.GetValues(typeof(SocialTendency)))
             {
                 Assert.IsTrue(_profile.SociabilityWeights.ContainsKey(item), 
                     $"dictionary does not contain key: {item}");
@@ -208,9 +204,7 @@ namespace ModuleTesting
         {
             //Arrange
 
-
             //Act
-
 
             //Assert
             foreach (var item in _profile.FidgetTendencyWeights)
@@ -225,9 +219,7 @@ namespace ModuleTesting
         {
             //Arrange
 
-
             //Act
-
 
             //Assert
             foreach (var item in _profile.FidgetTendencyWeights)
@@ -243,9 +235,7 @@ namespace ModuleTesting
         {
             //Arrange
 
-
             //Act
-
 
             //Assert
             foreach (var item in _profile.FidgetTendencyWeights)
