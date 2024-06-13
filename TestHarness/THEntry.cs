@@ -10,7 +10,9 @@ var _social = Sociability.Stoic;
 
 var _delay = DelayTendency.Focused;
 
-var _profile = new Profile(_social, _delay);
+var _fidget = FidgetTendency.Relaxed;
+
+var _profile = new Profile(_social, _delay, _fidget);
 
 var _behavior = new Behavior(_profile);
 

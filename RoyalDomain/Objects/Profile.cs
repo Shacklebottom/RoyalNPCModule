@@ -3,7 +3,7 @@ using RoyalDomain.Interfaces;
 
 namespace RoyalDomain.Objects
 {
-    public class Profile(Sociability sociability, DelayTendency delayTendency) : IProfile
+    public class Profile(Sociability sociability, DelayTendency delayTendency, FidgetTendency fidgetTendency) : IProfile
     {
         public double SocialValue 
         { 
@@ -20,6 +20,16 @@ namespace RoyalDomain.Objects
             get
             {
                 var value = DelayTendencyWeights[delayTendency];
+
+                return value;
+            }
+        }
+
+        public double FidgetValue
+        {
+            get
+            {
+                var value = FidgetTendencyWeights[fidgetTendency];
 
                 return value;
             }
@@ -49,6 +59,19 @@ namespace RoyalDomain.Objects
                 };
                 return weights;
             }        
+        }
+
+        public Dictionary<FidgetTendency, double> FidgetTendencyWeights
+        {
+            get
+            {
+                var weights = new Dictionary<FidgetTendency, double>
+                {
+                    { FidgetTendency.Restless, 0.9 },
+                    { FidgetTendency.Relaxed, 0.1 },
+                };
+                return weights;
+            }
         }
     }
 }
