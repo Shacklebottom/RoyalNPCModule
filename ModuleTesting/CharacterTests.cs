@@ -114,5 +114,50 @@ namespace ModuleTesting
             Assert.IsTrue(result, 
                 $"ShallCharacterSpeak() returned {result} when true was expected");
         }
+
+
+
+        [TestMethod]
+        public void GetCharacterWaitPeriod_ReturnsAnInt()
+        {
+            //Arrange
+
+            //Act
+            var result = _character.GetCharacterWaitPeriod();
+
+            //Assert
+            Assert.AreEqual(typeof(int), result.GetType(), 
+                $"GetCharacterWaitPeriod() returned as type {result.GetType()} when int was expected");
+
+        }
+
+
+        [TestMethod]
+        public void GetCharacterWaitPeriod_ShouldReturn_LessThan90000()
+        {
+            //Arrange
+            _mockBehavior.Setup(p => p.WaitLenience).Returns(0.99);
+
+            //Act
+            var result = _character.GetCharacterWaitPeriod();
+
+            //Assert
+            var period = 90000;
+
+            Assert.IsTrue(result < period, $"result: {result} was greater than expected period: {period}");
+        }
+
+        [TestMethod]
+        public void GetCharacterWaitPeriod_ShouldReturn_GreaterThanZero()
+        {
+            //Arrange
+            _mockBehavior.Setup(p => p.WaitLenience).Returns(0.01);
+
+            //Act
+            var result = _character.GetCharacterWaitPeriod();
+
+            //Assert
+            Assert.IsTrue(result > 0, $"result: {result} was less than zero");
+        }
     }
 }

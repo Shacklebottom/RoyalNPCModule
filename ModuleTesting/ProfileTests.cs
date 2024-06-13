@@ -32,7 +32,7 @@ namespace ModuleTesting
 
             //Assert
             var socialWeight = _profile.SociabilityWeights[_social];
-            Assert.AreEqual(socialWeight, _profile.SocialValue);
+            Assert.AreEqual(socialWeight, _profile.SocialValue, $"SocialValue was: {_profile.SocialValue} when {socialWeight} was expected");
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ namespace ModuleTesting
 
             //Assert
             var delayWeight = _profile.DelayTendencyWeights[_delay];
-            Assert.AreEqual(delayWeight, _profile.DelayValue);
+            Assert.AreEqual(delayWeight, _profile.DelayValue, $"DelayValue was: {_profile.SocialValue} when {delayWeight} was expected");
         }
 
         [TestMethod]

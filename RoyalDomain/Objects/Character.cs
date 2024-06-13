@@ -1,4 +1,5 @@
 ﻿using RoyalDomain.Interfaces;
+using System.Reflection.Metadata.Ecma335;
 
 namespace RoyalDomain.Objects
 {
@@ -15,6 +16,15 @@ namespace RoyalDomain.Objects
                 return true;
             }
             return false;
+        }
+
+        public int GetCharacterWaitPeriod()
+        {
+            var milliseconds = 90000;
+
+            int period = (int)(milliseconds * Behavior.WaitLenience);
+
+            return period;
         }
     }
 }
