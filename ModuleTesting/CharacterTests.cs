@@ -115,8 +115,6 @@ namespace ModuleTesting
                 $"ShallCharacterSpeak() returned {result} when true was expected");
         }
 
-
-
         [TestMethod]
         public void GetCharacterWaitPeriod_ReturnsAnInt()
         {
@@ -159,5 +157,68 @@ namespace ModuleTesting
             //Assert
             Assert.IsTrue(result > 0, $"result: {result} was less than zero");
         }
+
+        [TestMethod]
+        public void ShallCharacterFidget_ShouldCallNextDouble_ExactlyOnce()
+        {
+            //Arrange
+
+            //Act
+            var result = _character.ShallCharacterFidget();
+
+            //Assert
+            _mockRandom.Verify(r => r.NextDouble(), Times.Once,
+                "NextDouble() was not called exactly once");
+        }
+
+        [TestMethod]
+        public void ShallCharacterFidget_IfValueGreaterThanChanceToFidget_ReturnFalse()
+        {
+            //Arrange
+            _mockRandom.Setup(r => r.NextDouble()).Returns(0.4);
+
+            _mockBehavior.Setup(b => b.ChanceToFidget).Returns(0.3);
+
+            //Act
+            var result = _character.ShallCharacterFidget();
+
+            //Assert
+            Assert.IsFalse(result,
+                $"ShallCharacterFidget() returned {result} when false was expected");
+        }
+
+        [TestMethod]
+        public void ShallCharacterFidget_IfValueLessThanChanceToFidget_ReturnTrue()
+        {
+            //Arrange
+            _mockRandom.Setup(r => r.NextDouble()).Returns(0.2);
+
+            _mockBehavior.Setup(b => b.ChanceToFidget).Returns(0.3);
+
+            //Act
+            var result = _character.ShallCharacterFidget();
+
+            //Assert
+            Assert.IsTrue(result,
+                $"ShallCharacterFidget() returned {result} when true was expected");
+        }
+
+        [TestMethod]
+        public void ShallCharacterFidget_IfValueEqualsChanceToSpeak_ReturnTrue()
+        {
+            //Arrange
+            _mockRandom.Setup(r => r.NextDouble()).Returns(0.2);
+
+            _mockBehavior.Setup(b => b.ChanceToFidget).Returns(0.2);
+
+
+            //Act
+            var result = _character.ShallCharacterFidget();
+
+            //Assert
+            Assert.IsTrue(result,
+                $"ShallCharacterFidget() returned {result} when true was expected");
+        }
+
     }
 }

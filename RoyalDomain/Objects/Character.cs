@@ -25,5 +25,14 @@ namespace RoyalDomain.Objects
 
             return period;
         }
+
+        public bool ShallCharacterFidget()
+        {
+            if (Random.NextDouble() <= Behavior.ChanceToFidget)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
