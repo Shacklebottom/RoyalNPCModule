@@ -8,6 +8,8 @@ namespace RoyalDomain.Interfaces
 
         double WaitLenience { get; }
 
+        double ChanceToFidget { get; }
+
         IProfile Profile { get; }
     }
 }

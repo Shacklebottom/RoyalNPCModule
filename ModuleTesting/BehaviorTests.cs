@@ -21,6 +21,10 @@ namespace ModuleTesting
 
         private readonly double _socialHighEnd = 0.9;
 
+        private readonly double _fidgetLowEnd = 0.1;
+
+        private readonly double _fidgetHighEnd = 0.9;
+
         private Behavior _behavior;
 
         [TestInitialize]
@@ -31,6 +35,8 @@ namespace ModuleTesting
             _mockProfile.Setup(p => p.SocialValue).Returns(_socialLowEnd);
 
             _mockProfile.Setup(p => p.DelayValue).Returns(_delayLowEnd);
+
+            _mockProfile.Setup(p => p.FidgetValue).Returns(_fidgetLowEnd);
 
             _behavior = new Behavior(_mockProfile.Object);
         }
@@ -135,6 +141,54 @@ namespace ModuleTesting
             //Assert
             Assert.IsTrue(result > 0,
                 $"WaitLenience returned less than zero; result: {result}");
+        }
+
+        [TestMethod]
+        public void ChanceToFidget_ReturnsADouble()
+        {
+            //Arrange
+
+
+            //Act
+            var result = _behavior.ChanceToFidget;
+
+            //Assert
+            Assert.AreEqual(typeof(double), result.GetType(),
+                $"ChanceToFidget returned as type {result.GetType()} when double was expected");
+
+        }
+
+        [TestMethod]
+        public void ChanceToFidget_ShouldReturn_LessThanOne()
+        {
+            //Arrange
+            _mockProfile.Setup(p => p.FidgetValue).Returns(_fidgetHighEnd);
+
+            _mockProfile.Setup(p => p.DelayValue).Returns(_delayHighEnd);
+
+            _behavior = new Behavior(_mockProfile.Object);
+
+            //Act
+            var result = _behavior.ChanceToFidget;
+
+            //Assert
+            Assert.IsTrue(result < 1,
+                $"ChanceToFidget returned greater than one; result: {result}");
+
+        }
+
+        [TestMethod]
+        public void ChanceToFidget_ShouldReturn_GreaterThanZero()
+        {
+            //Arrange
+            _behavior = new Behavior(_mockProfile.Object);
+
+            //Act
+            var result = _behavior.ChanceToFidget;
+
+            //Assert
+            Assert.IsTrue(result > 0,
+                $"ChanceToFidget returned less than zero; result: {result}");
         }
     }
 }

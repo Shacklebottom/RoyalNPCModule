@@ -28,5 +28,16 @@ namespace RoyalDomain.Objects
                 return baseLenience;
             }
         }
+
+        public double ChanceToFidget
+        {
+            get
+            {
+                var baseChance =
+                    Profile.FidgetValue * 0.7 +
+                    Profile.DelayValue * 0.3;
+                return baseChance;
+            }
+        }
     }
 }
